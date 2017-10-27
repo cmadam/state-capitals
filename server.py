@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
 from flask.ext.bootstrap import Bootstrap
+import random
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-
-import random
 
 capitals_dict = {
     'Alabama': 'Montgomery',
@@ -130,9 +130,11 @@ def answer():
     state = request.form.get('state')
     answer_state_capital = request.form.get('capital')
     state_capital = capitals_dict.get(state, 'NotFound')
+    state_abbrev = state_abbreviations.get(state, 'NotFound')
     return render_template('answer.html', state=state,
                            state_capital=state_capital,
-                           answer_state_capital=answer_state_capital)
+                           answer_state_capital=answer_state_capital,
+                           state_abbrev=state_abbrev)
 
 
 def question():

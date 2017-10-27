@@ -12,17 +12,15 @@
 
 {% block content %}
 <div class="container">
-  <form method="POST" action="">
-    <h3>What is the capital of {{ state }}? <input type="text" name="capital">
-    <input type="submit" name="answer" value="Answer" state={{ state }}></h3>
-  </form>
   <img src="/static/800px-Map_of_USA_{{ state_abbrev }}.png" />
-  {% if capital != '' %}
-  {% if capital == state_capital %}
-  <h3>Correct! Nice job.</h3>
+  {% if answer_state_capital == state_capital %}
+  <h3>Correct! Nice job. The capital of {{ state }} is {{state_capital }}.</h3>
   {% else %}
-  <h3>Incorrect.  The capital of {{ state }} is {{state_capital }}</h3>
+  <h3>Incorrect.  The capital of {{ state }} is {{ state_capital }}, not {{ answer_state_capital }}.</h3>
   {% endif %}
-  {% endif %}
+  <form method="POST" action="/question">
+    <h3><input type="submit" name="answer" value="Play Again?"</h3>
+  </form>
+
 </div>
 {% endblock %}
