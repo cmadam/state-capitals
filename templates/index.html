@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Guess the State Capital!{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('index') }}">State Capitals</a>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <form method="POST" action="">
+    <h3>What is the capital of {{ state }}? <input type="text" name="capital">
+    <input type="submit" name="answer" value="Answer"></h3>
+  </form>
+  <img src="/static/800px-Map_of_USA_{{ state_abbrev }}.png" />
+  {% if capital != '' %}
+  {% if capital == state_capital %}
+  <h3>Correct! Nice job.</h3>
+  {% else %}
+  <h3>Incorrect.  The capital of {{ state }} is {{state_capital }}</h3>
+  {% endif %}
+  {% endif %}
+</div>
+{% endblock %}
